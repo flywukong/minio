@@ -1626,7 +1626,7 @@ func (api objectAPIHandlers) PutObjectHandler(w http.ResponseWriter, r *http.Req
 	ctx := newContext(r, w, "PutObject")
 	defer logger.AuditLog(ctx, w, r, mustGetClaimsFromToken(r))
 
-	log.Println("go to put object handler")
+	fmt.Println("go to put object handler")
 	objectAPI := api.ObjectAPI()
 	if objectAPI == nil {
 		writeErrorResponse(ctx, w, errorCodes.ToAPIErr(ErrServerNotInitialized), r.URL)
@@ -1756,9 +1756,9 @@ func (api objectAPIHandlers) PutObjectHandler(w http.ResponseWriter, r *http.Req
 		}
 	}
 
-	log.Println("sleep 1 miniute after auth")
+	fmt.Println("sleep 1 miniute after auth")
 	time.Sleep(1 * time.Minute)
-	log.Println("sleep finish")
+	fmt.Println("sleep finish")
 
 	if err := enforceBucketQuotaHard(ctx, bucket, size); err != nil {
 		writeErrorResponse(ctx, w, toAPIError(ctx, err), r.URL)
